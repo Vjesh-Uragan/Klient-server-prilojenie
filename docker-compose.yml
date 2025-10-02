@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:12
+    container_name: orders-postgres
+    environment:
+      POSTGRES_DB: ordersdb
+      POSTGRES_USER: UserUragan
+      POSTGRES_PASSWORD: 123QQ123
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./docker/init-sql:/docker-entrypoint-initdb.d
+      - pg:/var/lib/postgresql/data
+    restart: unless-stopped
+
+volumes:
+  pg:
